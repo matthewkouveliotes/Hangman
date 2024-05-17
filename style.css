@@ -1,0 +1,20 @@
+#incorrectLetters {
+    list-style-type: none;
+}
+#incorrectLetters li {
+    float: left;
+    margin: 0.5vw;
+}
+
+#spacesList {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#spacesList li {
+    margin: 1vw;
+    font-size: 5vw;
+}
+
