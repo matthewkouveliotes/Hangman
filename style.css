@@ -11,6 +11,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 5vw;
 }
 
 #spacesList li {
@@ -18,3 +19,30 @@
     font-size: 5vw;
 }
 
+#keyboard {
+    margin-top: 1vw;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto;
+    text-align: center;
+}
+
+#keyboard button {
+    width: 6.5vw;
+    height: 6.5vw;
+    margin: 0.1vw;
+}
+#guessParent {
+    text-align: center;
+    margin-top: 8vw;
+}
+
+@media only screen and (max-width: 1000px) {
+    #keyboard button {
+        width: 8vw;
+        height: 10vw;
+    }
+    #keyboard {
+        margin-top: 15vw;
+    }
+}

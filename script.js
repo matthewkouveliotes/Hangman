@@ -1,12 +1,14 @@
 let wordList;
 let chosenWord;
-let lives = 10;
+let lives = 7;
 let canGuess = true;
+let ptsNeeded;
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 async function initializeGame() {
     await loadWords()
     chooseWord();
-    document.getElementById("lives").innerHTML = "Lives Left: 10";
+    document.getElementById("lives").innerHTML = "Lives Left: " + lives;
     establishSpaces();
     establishListeners();
 }
@@ -20,6 +22,8 @@ async function loadWords() {
 function chooseWord() {
     var randomNumber = Math.floor(Math.random() * wordList.length);
     chosenWord = wordList[randomNumber];
+    var trimmedPhrase = chosenWord.replace(" ", "").replace("-", "");
+    ptsNeeded = trimmedPhrase.length;
 }
 
 function locateLetters(letter) {
@@ -45,8 +49,13 @@ function incorrectGuess(letter) {
 
 function establishSpaces() {
     var spacesNeeded = chosenWord.length;
+    var spacesList = document.getElementById("spacesList");
     for(var i = 0; i < spacesNeeded; i++) {
-        document.getElementById("spacesList").innerHTML += "<li>_</li>"
+        if(chosenWord.charAt(i) === "-" || chosenWord.charAt(i) === " ") {
+            spacesList.innerHTML += "<li id='space" + i + "'>" + chosenWord.charAt(i) + "</li>"
+            continue;
+        }
+        spacesList.innerHTML += "<li id='space" + i + "'>_</li>"
     }
 }
 
@@ -54,9 +63,46 @@ function establishListeners() {
     document.addEventListener("keydown", (event) => keyPress(event.key))
 }
 
-var allowedKeys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+const guesses = [];
+let pts = 0;
 function keyPress(key) {
-    if(allowedKeys.includes(key.toUpperCase())) {
-        console.log(key);
+    if(!canGuess) return;
+    if(key.toUpperCase() >= "A" && key.toUpperCase() <= "Z" && !guesses.includes(key) && key.length === 1) {
+        guesses.push(key);
+        key = key.toLowerCase();
+        var locator = locateLetters(key);
+        if(locator.length === 0) {
+            incorrectGuess(key);
+        }
+        else {
+            for(var i = 0; i < locator.length; i++) {
+                document.getElementById("space" + locator[i]).innerHTML = key;
+                pts++;
+            }
+            if(pts === ptsNeeded) {
+                win();
+            }
+        }
+    }
+}
+
+async function win() {
+    await delay(250);
+    alert("Congratulations!\nYou won with " + lives + " lives left!");
+    canGuess = false;
+}
+
+function guessWord() {
+    if(!canGuess) return;
+    var guess = window.prompt("What do you think the word is? (Make sure to include spaces and dashes!");
+    if(guess === null) return;
+    if(guess === chosenWord) {
+        for(var i = 0; i < chosenWord.length; i++) {
+            document.getElementById("space" + i).innerHTML = guess.charAt(i);
+        }
+        win();
+    }
+    else {
+        incorrectGuess(guess);
     }
 }

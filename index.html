@@ -5,6 +5,7 @@
     <title>Hangman</title>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body onload="initializeGame()">
     <h1 id="lives">Lives Remaining: </h1>
@@ -15,6 +16,43 @@
         <ul id="spacesList">
 
         </ul>
+    </div>
+    <div id="guessParent">
+        <button id="guess" onclick="guessWord()">Guess The Word!</button>
+    </div>
+    <div id="keyboard">
+        <div id="keyboardrow1">
+            <button onclick="keyPress('Q')" class="keyButton">Q</button>
+            <button onclick="keyPress('W')" class="keyButton">W</button>
+            <button onclick="keyPress('E')" class="keyButton">E</button>
+            <button onclick="keyPress('R')" class="keyButton">R</button>
+            <button onclick="keyPress('T')" class="keyButton">T</button>
+            <button onclick="keyPress('Y')" class="keyButton">Y</button>
+            <button onclick="keyPress('U')" class="keyButton">U</button>
+            <button onclick="keyPress('I')" class="keyButton">I</button>
+            <button onclick="keyPress('O')" class="keyButton">O</button>
+            <button onclick="keyPress('P')" class="keyButton">P</button>
+        </div>
+        <div id="keyboardrow2">
+            <button onclick="keyPress('A')" class="keyButton">A</button>
+            <button onclick="keyPress('S')" class="keyButton">S</button>
+            <button onclick="keyPress('D')" class="keyButton">D</button>
+            <button onclick="keyPress('F')" class="keyButton">F</button>
+            <button onclick="keyPress('G')" class="keyButton">G</button>
+            <button onclick="keyPress('H')" class="keyButton">H</button>
+            <button onclick="keyPress('J')" class="keyButton">J</button>
+            <button onclick="keyPress('K')" class="keyButton">K</button>
+            <button onclick="keyPress('L')" class="keyButton">L</button>
+        </div>
+        <div id="keyboardrow3">
+            <button onclick="keyPress('Z')" class="keyButton">Z</button>
+            <button onclick="keyPress('X')" class="keyButton">X</button>
+            <button onclick="keyPress('C')" class="keyButton">C</button>
+            <button onclick="keyPress('V')" class="keyButton">V</button>
+            <button onclick="keyPress('B')" class="keyButton">B</button>
+            <button onclick="keyPress('N')" class="keyButton">N</button>
+            <button onclick="keyPress('M')" class="keyButton">M</button>
+        </div>
     </div>
 </body>
 </html>
