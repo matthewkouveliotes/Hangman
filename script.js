@@ -2,7 +2,9 @@ let wordList;
 let chosenWord;
 let lives = 7;
 let canGuess = true;
+let jsonWords;
 let ptsNeeded;
+let converted;
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 async function initializeGame() {
@@ -14,8 +16,8 @@ async function initializeGame() {
 }
 
 async function loadWords() {
-    var jsonWords = await fetch("dictionary.json");
-    var converted = await jsonWords.json();
+    jsonWords = await fetch("dictionary.json");
+    converted = await jsonWords.json();
     wordList = Object.keys(converted);
 }
 
@@ -88,7 +90,7 @@ function keyPress(key) {
 
 async function win() {
     await delay(250);
-    alert("Congratulations!\nYou won with " + lives + " lives left!");
+    alert("Congratulations!\nYou won with " + lives + " lives left!\nThe definition of the word is:\n" + converted[chosenWord]);
     canGuess = false;
 }
 
