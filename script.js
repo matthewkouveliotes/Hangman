@@ -1,6 +1,6 @@
 let wordList;
 let chosenWord;
-let lives = 7;
+let lives = 10;
 let canGuess = true;
 let jsonWords;
 let ptsNeeded;
@@ -41,9 +41,9 @@ function locateLetters(letter) {
 function incorrectGuess(letter) {
     lives--;
     if(lives === 0) {
-        document.getElementById("lives").innerHTML = "Lives Left:" + lives;
+        document.getElementById("lives").innerHTML = "Lives Left: " + lives;
         delay(250);
-        alert("You lose!\nThe word was: " + chosenWord + "\nThe definition of the word is:\n" + converted[chosenWord]);
+        setAlert("You lose! The word was: " + chosenWord + `<br><a href="https://www.merriam-webster.com/dictionary/${chosenWord}">Click here for the definition of the word!</a>`);
         canGuess = false;
 
         return;
@@ -92,8 +92,7 @@ function keyPress(key) {
 }
 
 async function win() {
-    await delay(250);
-    alert("Congratulations!\nYou won with " + lives + " lives left!\nThe definition of the word is:\n" + converted[chosenWord]);
+    setAlert("Congratulations! You won with " + lives + " lives left!"  + `<br><a href="https://www.merriam-webster.com/dictionary/${chosenWord}">Click here for the definition of the word!</a>`);
     canGuess = false;
 }
 
@@ -110,4 +109,9 @@ function guessWord() {
     else {
         incorrectGuess(guess);
     }
+}
+
+function setAlert(text) {
+    document.getElementById("alertBox").style.display = "block";
+    document.getElementById("alert").innerHTML = text;
 }
