@@ -8,7 +8,7 @@ let converted;
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 async function initializeGame() {
-    await loadWords()
+    await loadWords();
     chooseWord();
     document.getElementById("lives").innerHTML = "Lives Left: " + lives;
     establishSpaces();
@@ -41,8 +41,11 @@ function locateLetters(letter) {
 function incorrectGuess(letter) {
     lives--;
     if(lives === 0) {
-        alert("You lose!\nThe word was: " + chosenWord)
+        document.getElementById("lives").innerHTML = "Lives Left:" + lives;
+        delay(250);
+        alert("You lose!\nThe word was: " + chosenWord + "\nThe definition of the word is:\n" + converted[chosenWord]);
         canGuess = false;
+
         return;
     }
     document.getElementById("lives").innerHTML = "Lives Left:" + lives;
@@ -62,7 +65,7 @@ function establishSpaces() {
 }
 
 function establishListeners() {
-    document.addEventListener("keydown", (event) => keyPress(event.key))
+    document.addEventListener("keydown", (event) => keyPress(event.key));
 }
 
 const guesses = [];
