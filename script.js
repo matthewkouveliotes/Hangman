@@ -82,6 +82,7 @@ function keyPress(key) {
         else {
             for(var i = 0; i < locator.length; i++) {
                 document.getElementById("space" + locator[i]).innerHTML = key;
+                document.getElementById("space" + locator[i]).style.margin = "0.25vw";
                 pts++;
             }
             if(pts === ptsNeeded) {
@@ -96,13 +97,15 @@ async function win() {
     canGuess = false;
 }
 
-function guessWord() {
+async function guessWord() {
     if(!canGuess) return;
     var guess = window.prompt("What do you think the word is? (Make sure to include spaces and dashes!");
     if(guess === null) return;
     if(guess === chosenWord) {
         for(var i = 0; i < chosenWord.length; i++) {
             document.getElementById("space" + i).innerHTML = guess.charAt(i);
+            document.getElementById("space" + i).style.margin = "0.25vw";
+            await delay(100);
         }
         win();
     }

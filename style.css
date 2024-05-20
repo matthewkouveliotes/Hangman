@@ -12,11 +12,13 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 6vw;
+    justify-self: center;
 }
 
 #spacesList li {
     margin: 1vw;
     font-size: 5vw;
+    transition: margin 1s;
 }
 
 #keyboard {
