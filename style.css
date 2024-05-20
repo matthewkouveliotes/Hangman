@@ -19,7 +19,7 @@
 #spacesList li {
     margin: 1vw;
     font-size: 5vw;
-    transition: margin 1s;
+    transition: margin 250ms;
 }
 
 #keyboard {
