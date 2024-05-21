@@ -55,3 +55,7 @@
     display:none;
     text-align: center;
 }
+
+#lives {
+    margin-top: 0;
+}

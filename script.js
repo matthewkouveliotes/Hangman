@@ -1,6 +1,6 @@
 let wordList;
 let chosenWord;
-let lives = 10;
+let lives = 5;
 let canGuess = true;
 let jsonWords;
 let ptsNeeded;
