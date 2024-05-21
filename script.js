@@ -4,7 +4,6 @@ let lives = 10;
 let canGuess = true;
 let jsonWords;
 let ptsNeeded;
-let converted;
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 async function initializeGame() {
@@ -16,9 +15,7 @@ async function initializeGame() {
 }
 
 async function loadWords() {
-    jsonWords = await fetch("dictionary.json");
-    converted = await jsonWords.json();
-    wordList = Object.keys(converted);
+    wordList = Object.keys(data);
 }
 
 function chooseWord() {
