@@ -15,7 +15,7 @@ async function initializeGame() {
 }
 
 async function loadWords() {
-    wordList = Object.keys(data);
+    wordList = data.dict;
 }
 
 function chooseWord() {
