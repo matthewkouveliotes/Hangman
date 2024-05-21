@@ -1,8 +1,9 @@
 #incorrectLetters {
     list-style-type: none;
+    display: flex;
+    justify-items: left;
 }
 #incorrectLetters li {
-    float: left;
     margin: 0.5vw;
 }
 
